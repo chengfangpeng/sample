@@ -16,7 +16,7 @@ import android.widget.TextView
  * @created 2019/01/02
  * @changeRecord [修改记录] <br/>
  */
-class DiffAdapter(private val mData: List<String>) : RecyclerView.Adapter<DiffAdapter.DiffViewHolder>() {
+class DiffAdapter(private var mData: List<String>) : RecyclerView.Adapter<DiffAdapter.DiffViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiffViewHolder {
         var itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_diff_layout, parent, false)
@@ -28,13 +28,22 @@ class DiffAdapter(private val mData: List<String>) : RecyclerView.Adapter<DiffAd
     }
 
     override fun onBindViewHolder(holder: DiffViewHolder, position: Int) {
-        holder.img.setImageResource(R.mipmap.ic_launcher)
-//        holder.tv.text = mData[position]
+        holder.tv.text = mData[position]
     }
 
 
+    fun setData(data: List<String>){
+        this.mData = data
+    }
+
+
+    fun getData(): List<String>{
+        return mData
+    }
+
+
+
     class DiffViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var img: ImageView = itemView.findViewById(R.id.img)
-//        var tv: TextView = itemView.findViewById(R.id.tv)
+        var tv: TextView = itemView.findViewById(R.id.tv)
     }
 }
