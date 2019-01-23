@@ -31,6 +31,16 @@ class DiffAdapter(private var mData: List<String>) : RecyclerView.Adapter<DiffAd
         holder.tv.text = mData[position]
     }
 
+    override fun onBindViewHolder(holder: DiffViewHolder, position: Int, payloads: MutableList<Any>) {
+        super.onBindViewHolder(holder, position, payloads)
+        if(payloads.isEmpty()){
+            onBindViewHolder(holder, position)
+        }else{
+            holder.tv2.text = payloads[0].toString()
+            //payloads为什么是个list没有搞明白
+        }
+    }
+
 
     fun setData(data: List<String>){
         this.mData = data
@@ -45,5 +55,6 @@ class DiffAdapter(private var mData: List<String>) : RecyclerView.Adapter<DiffAd
 
     class DiffViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var tv: TextView = itemView.findViewById(R.id.tv)
+        var tv2: TextView = itemView.findViewById(R.id.tv2)
     }
 }

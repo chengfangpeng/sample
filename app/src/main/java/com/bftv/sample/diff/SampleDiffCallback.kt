@@ -28,6 +28,10 @@ class SampleDiffCallback(private var mOldList: List<String>, private var mNewLis
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return true
+        return false
+    }
+
+    override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
+        return mNewList[newItemPosition]
     }
 }
